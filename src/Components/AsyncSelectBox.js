@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import AsyncSelect from "react-select/async";
 import axios from "axios";
@@ -20,16 +20,32 @@ const AsyncSelectBox = ({ childToParent }) => {
 
   const handleChange = async (value) => {
     setSelectedValue(value);
-    await getWeather(selectedValue?.lat, selectedValue?.lon);
+    // await getWeather(selectedValue?.lat, selectedValue?.lon);
+    // console.log("data from ASB handleChange: ", data);
+    // if (data) {
+    //   time = data.dt - data.timezone;
+    //   console.log("data", data);
+    //   console.log("time: ", time);
+    //   console.log("data from handleChange passed to parent: ", data);
+    //   childToParent(data);
+    // }
+
     console.log("data from ASB handleChange: ", data);
-    if (data) {
-      time = data.dt - data.timezone;
-      console.log("data", data);
-      console.log("time: ", time);
-      console.log("data from handleChange passed to parent: ", data);
-      childToParent(data);
-    }
   };
+  useEffect(() => {
+    async function GW() {
+      await getWeather(selectedValue?.lat, selectedValue?.lon);
+      console.log("data from ASB handleChange: ", data);
+      if (data) {
+        time = data.dt - data.timezone;
+        console.log("data", data);
+        console.log("time: ", time);
+        console.log("data from handleChange passed to parent: ", data);
+        childToParent(data);
+      }
+    }
+    GW();
+  }, [selectedValue]);
 
   const fetchLocation = async (inputValue) => {
     return await axios
@@ -126,7 +142,7 @@ const AsyncSelectBox = ({ childToParent }) => {
                   hour: "2-digit",
                   minute: "2-digit",
                   // second: "2-digit",
-                }).format(selectedValue?.dt)}
+                }).format(time)}
               </Text>
             </Box>
           </SimpleGrid>
