@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/wiindy/static/css/main.8e552e65.css",
-    "main.js": "/wiindy/static/js/main.d3e13c37.js",
+    "main.js": "/wiindy/static/js/main.543bdf92.js",
     "static/media/background.jpg": "/wiindy/static/media/background.ec05bd8fccee9ceb0ae2.jpg",
     "index.html": "/wiindy/index.html",
     "main.8e552e65.css.map": "/wiindy/static/css/main.8e552e65.css.map",
-    "main.d3e13c37.js.map": "/wiindy/static/js/main.d3e13c37.js.map"
+    "main.543bdf92.js.map": "/wiindy/static/js/main.543bdf92.js.map"
   },
   "entrypoints": [
     "static/css/main.8e552e65.css",
-    "static/js/main.d3e13c37.js"
+    "static/js/main.543bdf92.js"
   ]
 }
