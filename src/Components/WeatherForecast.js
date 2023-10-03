@@ -1,11 +1,11 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Box, Container, Flex, Img, Stack, Text } from "@chakra-ui/react";
+import React, { useLayoutEffect, useState } from "react";
+import { Box, Container, Flex, Stack } from "@chakra-ui/react";
 import AsyncSelectBox from "./AsyncSelectBox";
 import Weather from "./Weather";
 
 const BASE_API_URL =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&";
-const API_KEY = "adf229037bb123f36b0e9cdb8586b7f3";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const WeatherForecast = () => {
   const [weatherInfo, setWeatherInfo] = useState([]);
@@ -13,7 +13,7 @@ const WeatherForecast = () => {
   const childToParent = (childData) => {
     setWeatherInfo(childData);
   };
-  let src = "./openweathermap/";
+
   const getPosition = async (options) => {
     return await new Promise(function (resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -26,20 +26,15 @@ const WeatherForecast = () => {
     );
 
     const data = await res.json();
-    console.log("data from WF getWeather ", data);
     setWeatherInfo(data);
-    // console.log("weatherInfo: ", weatherInfo);
   };
 
   useLayoutEffect(() => {
-    console.log("ind");
     if (navigator.geolocation) {
       getPosition()
         .then((position) => {
           // call API
           getWeather(position.coords.latitude, position.coords.longitude);
-          console.log(position);
-          console.log("Longitude: ", position.coords.longitude);
         })
         .catch(() => {
           alert(
@@ -66,15 +61,6 @@ const WeatherForecast = () => {
           marginTop={"2rem"}
           borderRight={"3px solid #333"}
         >
-          {/* <Text color={"white"} fontSize={"2xl"}> */}
-          {/* {weatherInfo.name}
-            {weatherInfo.main.temp}
-            {weatherInfo.main.feels_like}
-             {weatherInfo.main.temp_min}
-            {weatherInfo.main.temp_max} {weatherInfo.main.humidity}
-            {weatherInfo.weather[0].main} {weatherInfo.weather[0].description}{" "}
-            {weatherInfo.weather[0].icon} {console.log(weatherInfo)} */}
-          {/* </Text> */}
           <Weather weatherInfo={weatherInfo} />
         </Box>
         <Box
