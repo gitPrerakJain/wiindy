@@ -5,7 +5,7 @@ import axios from "axios";
 import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 const BASE_API_URL =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&";
-const LOCATION_COORDS_BASE_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=`;
+const LOCATION_COORDS_BASE_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=`;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const AsyncSelectBox = ({ childToParent }) => {
